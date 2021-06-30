@@ -4,6 +4,7 @@ using UIKit;
 using Xamarin.Forms;
 using AiSwitchCellRenderer = AiForms.Renderers.iOS.SwitchCellRenderer;
 using AiSwitchCell = AiForms.Renderers.SwitchCell;
+using Foundation;
 
 [assembly: ExportRenderer(typeof(AiSwitchCell), typeof(AiSwitchCellRenderer))]
 namespace AiForms.Renderers.iOS
@@ -37,7 +38,11 @@ namespace AiForms.Renderers.iOS
             this.AccessoryView = _switch;
             EditingAccessoryView = _switch;
         }
-
+        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+        {
+            base.RowSelected(tableView, indexPath);
+            _switch.On = !_switch.On;
+        }
         /// <summary>
         /// Cells the property changed.
         /// </summary>
